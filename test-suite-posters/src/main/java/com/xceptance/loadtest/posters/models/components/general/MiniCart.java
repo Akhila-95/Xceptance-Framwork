@@ -19,7 +19,7 @@ public class MiniCart implements Component
     public LookUpResult locate()
     {
         //return Header.instance.locate().byCss("#miniCartMenu");
-        return Header.instance.locate().byCss(".minicart-total");
+        return Header.instance.locate().byCss(".minicart");
     }
 
     @Override

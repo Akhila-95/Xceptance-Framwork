@@ -43,7 +43,9 @@ public class ProductListingPage extends GeneralPages
     
     public String getCategoryType()
     {
-    	String categoryType = RegExUtils.getFirstMatch(Context.getPage().getUrl().toString(), "\\/posters\\/([^/]*)", 1);
+    	System.out.println("The url is "+Context.getPage().getUrl().toString());
+    	String categoryType = RegExUtils.getFirstMatch(Context.getPage().getUrl().toString(), "\\/utsf.firemountain.org\\/([^/]*)", 1);
+    	System.out.println("The final category url is "+ categoryType);
     	//Assert.assertTrue("Expected category type to be contained in URL", !StringUtils.isBlank(categoryType) && categoryType.toLowerCase().contains("category"));
     	Assert.assertTrue("Expected category type to be contained in URL", !StringUtils.isBlank(categoryType) && categoryType.toLowerCase().contains("level-1"));
     	

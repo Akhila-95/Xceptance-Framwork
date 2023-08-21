@@ -37,7 +37,6 @@ public class ClickACategory extends PageAction<ClickACategory>
 
         loadPageByClick(categoryLink);
     }
-
     /**
      * {@inheritDoc}
      */

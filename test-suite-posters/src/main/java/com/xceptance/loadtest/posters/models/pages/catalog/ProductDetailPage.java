@@ -59,12 +59,12 @@ public class ProductDetailPage extends GeneralPages
     public HtmlElement getAddToCartButton()
     {
     	// Returns add to cart button
-    	return Page.find().byId("btnAddToCart").asserted("Failed to find add to cart button for given product item").single();
+    	return Page.find().byXPath("//span[@class='button-content'][text()='Add to Cart']").asserted("Failed to find add to cart button for given product item").single();
     }
     
     public String getProductId()
     {
-        String productId = Page.find().byId("btnAddToCart").asserted("Expected add to cart button").single().getAttribute("onclick");
+        String productId = Page.find().byXPath("//span[@class='button-content'][text()='Add to Cart']").asserted("Expected add to cart button").single().getAttribute("onclick");
         productId = RegExUtils.getFirstMatch(productId, "addToCart\\((\\d+)\\,", 1);
         
         Assert.assertTrue("Expected valid productId", !StringUtils.isBlank(productId));

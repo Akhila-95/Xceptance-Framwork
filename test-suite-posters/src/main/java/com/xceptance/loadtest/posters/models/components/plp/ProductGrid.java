@@ -71,7 +71,7 @@ public class ProductGrid implements Component
     	for(int i=0; i<products.length(); i++)
     	{
     		JSONObject product = products.getJSONObject(i);
-    		String id = product.optString("id");
+    		String id = product.optString("data-pid");
     		String name = product.optString("name");
     		
     		// Make sure id and name are contained in the date because we need it to create the URL
@@ -80,18 +80,18 @@ public class ProductGrid implements Component
     			EventLogger.BROWSE.error("Invalid product URL details found at page", Context.getPage().getUrl().toString());
     			continue;
     		}
-    		
+    		productLinks.add("/on/demandware.store/Sites-fireMountainGems-Site/default/Product-Show?pid=" + id);
     		// Create the URL from given details
-    		try
+    		/*	try
     		{
     			//productLinks.add("/posters/productDetail/" + URLEncoder.encode(name, "UTF-8") + "?productId=" + id);
-    			productLinks.add("/posters/productDetail/" + URLEncoder.encode(name, "UTF-8") + "?productId=" + id);
+    			
     		}
     		catch(UnsupportedEncodingException uee)
     		{
     			EventLogger.BROWSE.error("Failed to encode URL created from product details found at page", Context.getPage().getUrl().toString());
     			continue;
-    		}
+    		}*/
     	}
     	
     	// Apply filter to product links
@@ -102,7 +102,7 @@ public class ProductGrid implements Component
     {
     	// Get all product tiles that contain a link
     	//List<HtmlElement> productElements = locate().byCss("div[id^='product'] > div.container-fluid > a[href]").all();
-    	List<HtmlElement> productElements = locate().byCss("div.product").all();
+    	List<HtmlElement> productElements = locate().byCss("div.product >div.product-tile >div.flex-contain-device >div.prodtitle-message>div.tilecontent a[href]").all();
     	
     	// Retrieve all URLs and apply the URL filter
     	return productElements.stream().map(e -> e.getAttribute("href")).filter(url -> !discardedUrls.stream().anyMatch(filterUrl -> url.contains(filterUrl))).collect(Collectors.toList());
