@@ -59,6 +59,6 @@ public class MiniCart implements Component
 
     public LookUpResult getViewCartLink()
     {
-        return locate().byCss("a.goToCart");
+        return locate().byCss("div.minicart-checkout a.btn-outline-primary");
     }
 }

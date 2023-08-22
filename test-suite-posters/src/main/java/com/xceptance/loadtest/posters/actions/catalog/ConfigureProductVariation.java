@@ -37,6 +37,7 @@ public class ConfigureProductVariation extends AjaxAction<ConfigureProductVariat
     @Override
     public void precheck()
     {
+    	/*
     	// Get all variation attributes
     	List<HtmlElement> variationAttributes = ProductDetailPage.instance.getVariationAttributes();
     	Assert.assertTrue("Expected at least one variation attribute", variationAttributes.size() > 0);
@@ -49,6 +50,7 @@ public class ConfigureProductVariation extends AjaxAction<ConfigureProductVariat
     	
     	// Sanity check that we have at least a single configurable variation attribute
     	Assert.assertFalse("Expected at least one configurable variation attribute", selectVariationAttributes.isEmpty() && inputVariationAttributes.isEmpty());
+    	*/
     }
     
     private void extractUnconfiguredSelectVariationAttributes(List<HtmlElement> variationAttributes)

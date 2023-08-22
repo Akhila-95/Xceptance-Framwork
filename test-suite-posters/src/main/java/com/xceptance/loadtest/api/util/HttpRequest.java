@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
+import org.openqa.selenium.devtools.v111.domsnapshot.model.NameValue;
 import org.xml.sax.SAXException;
 
 import org.htmlunit.DefaultPageCreator;
@@ -406,15 +407,15 @@ public class HttpRequest
     /**
      * Add POST parameters. This implies that the request body gets dropped.
      *
-     * @param postParams
+     * @param addToCartParams
      *            the parameters given as name-value pairs
      * @return HttpRequest configuration
      */
-    public HttpRequest postParams(final List<NameValuePair> postParams)
+    public HttpRequest postParams(final List<NameValuePair> addToCartParams)
     {
-        noNullValue(postParams, "Post parameters");
+        noNullValue(addToCartParams, "Post parameters");
 
-        postParams.forEach(p -> postParam(p.getName(), p.getValue()));
+        addToCartParams.forEach(p -> postParam(p.getName(), p.getValue()));
 
         return this;
     }
@@ -1357,7 +1358,7 @@ public class HttpRequest
         return httpRequest;
     }
 
-    private Map<String, String> getAdditionalHeadersInternal()
+	private Map<String, String> getAdditionalHeadersInternal()
     {
         if (headers == null)
         {

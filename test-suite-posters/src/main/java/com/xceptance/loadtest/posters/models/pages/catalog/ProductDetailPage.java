@@ -1,6 +1,8 @@
 package com.xceptance.loadtest.posters.models.pages.catalog;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -53,20 +55,26 @@ public class ProductDetailPage extends GeneralPages
     public List<HtmlElement> getVariationAttributes()
     {
     	// Returns all configurable variation attributes
+    	
     	return Page.find().byId("main").byXPath(".//div[contains(@class, 'form-group') and contains(@class, 'row') and not(./p[@id='prodDescriptionDetail'])]").all();
+    
     }
     
     public HtmlElement getAddToCartButton()
     {
     	// Returns add to cart button
-    	return Page.find().byXPath("//span[@class='button-content'][text()='Add to Cart']").asserted("Failed to find add to cart button for given product item").single();
+    	return Page.find().byCss("div.add-update-btns a.add-to-cart").asserted("Failed to find add to cart button for given product item").single();
     }
     
     public String getProductId()
     {
-        String productId = Page.find().byXPath("//span[@class='button-content'][text()='Add to Cart']").asserted("Expected add to cart button").single().getAttribute("onclick");
-        productId = RegExUtils.getFirstMatch(productId, "addToCart\\((\\d+)\\,", 1);
-        
+
+        String productId = Page.find().byCss("div.add-update-btns a.add-to-cart").asserted("Expected add to cart button").single().getAttribute("data-pid");
+        System.out.println("Product id " + productId);
+         
+        productId = RegExUtils.getFirstMatch(productId, "([A-Za-z0-9]+)", 1);
+          
+        System.out.println("Product id " + productId);
         Assert.assertTrue("Expected valid productId", !StringUtils.isBlank(productId));
         
         return productId;
