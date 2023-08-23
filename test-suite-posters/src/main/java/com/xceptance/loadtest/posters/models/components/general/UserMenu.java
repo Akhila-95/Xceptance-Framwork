@@ -16,7 +16,7 @@ public class UserMenu implements Component
     public LookUpResult locate()
     {
         //return Header.instance.locate().byCss("#userMenu");
-        return Header.instance.locate().byCss("div.navbar-brand a.logo-home");
+        return Header.instance.locate().byCss(".login-section");
     }
 
     @Override

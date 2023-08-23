@@ -60,7 +60,7 @@ public class AddToCart extends AjaxAction<AddToCart>
 
     	 AddToCartParams.add((NameValuePair) new NameValuePair("pid", productId));
 
-    	 AddToCartParams.add((NameValuePair) new NameValuePair("quantity", String.valueOf(1)));
+    	 AddToCartParams.add((NameValuePair) new NameValuePair("quantity", "1"));
 
            HttpRequest req = new HttpRequest()
 

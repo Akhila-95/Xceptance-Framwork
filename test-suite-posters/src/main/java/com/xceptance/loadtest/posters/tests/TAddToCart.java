@@ -26,10 +26,14 @@ public class TAddToCart extends LoadTestCase
 
         // Add items to the cart via browsing and searching the catalog
         new AddToCartFlow(Context.configuration().addToCartCount.value).run();
+        //new AddToCartFlow(1).run();
+        System.out.println("product added to cart");
+        
 
         // View the cart if not yet done
         if (!CartPage.instance.is())
         {
+        	System.out.println("In  view ccart");
             new ViewCart().run();
         }
         

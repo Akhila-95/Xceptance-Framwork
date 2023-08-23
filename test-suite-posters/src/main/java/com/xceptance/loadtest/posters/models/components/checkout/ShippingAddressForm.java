@@ -21,6 +21,7 @@ public class ShippingAddressForm implements Component
     @Override
     public LookUpResult locate()
     {
+        //return Page.find().byId("formAddDelAddr");
         return Page.find().byId("formAddDelAddr");
     }
 

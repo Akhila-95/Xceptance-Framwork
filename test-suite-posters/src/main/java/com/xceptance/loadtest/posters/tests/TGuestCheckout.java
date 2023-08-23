@@ -39,6 +39,7 @@ public class TGuestCheckout extends LoadTestCase
 
         // Attach an account to the Context, so it can be used in the following actions
         Context.get().data.attachAccount();
+      
 
         // Follow checkout steps (do not place final order but abandon checkout after payment)
         new CheckoutFlow(false).run();

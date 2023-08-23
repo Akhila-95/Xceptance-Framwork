@@ -19,6 +19,7 @@ public class ViewCart extends PageAction<ViewCart>
     protected void doExecute() throws Exception
     {
         loadPageByClick(GeneralPages.instance.miniCart.getViewCartLink().asserted().single());
+        System.out.println("view cart");
     }
 
     /**

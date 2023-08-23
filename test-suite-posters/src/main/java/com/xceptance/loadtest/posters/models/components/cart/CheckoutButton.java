@@ -16,7 +16,8 @@ public class CheckoutButton implements Component
     @Override
     public LookUpResult locate()
     {
-        return Page.find().byId("btnStartCheckout");
+        //return Page.find().byId("btnStartCheckout");
+        return Page.find().byId(".checkout-btn");
     }
 
     @Override

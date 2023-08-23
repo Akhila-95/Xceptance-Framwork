@@ -17,7 +17,7 @@ public class CartBanner implements Component
     public LookUpResult locate()
     {
         //return Page.find().byId("titleCart");
-        return Page.find().byId("titleCart");
+        return Page.find().byXPath("//h1[contains(@class, 'cart-title')]");
     }
 
     @Override

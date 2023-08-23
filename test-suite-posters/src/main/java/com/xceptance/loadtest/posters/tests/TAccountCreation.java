@@ -27,6 +27,7 @@ public class TAccountCreation extends LoadTestCase
 
         // Attach an account to the current context
         Context.get().data.attachAccount();
+        System.out.println("visitflow complted");
 
         // Register user
         new CreateAccountFlow().run();
