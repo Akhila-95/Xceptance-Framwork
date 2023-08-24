@@ -1,7 +1,8 @@
 package com.xceptance.loadtest.posters.models.components.account;
 
 import org.htmlunit.html.HtmlElement;
-import org.htmlunit.html.HtmlForm;
+//import org.htmlunit.html.HtmlForm;
+import  org.htmlunit.html.HtmlDivision;
 import com.xceptance.loadtest.api.data.Account;
 import com.xceptance.loadtest.api.hpu.HPU;
 import com.xceptance.loadtest.api.hpu.LookUpResult;
@@ -39,14 +40,16 @@ public class CreateAccountForm implements Component
 
     public void fillCreateAccountForm(final Account account)
     {
-        final HtmlForm form = locate().asserted().single();
+        final HtmlElement form = locate().asserted().single();
 
-        FormUtils.setInputValue(HPU.find().in(form).byId("lastName"), account.lastname);
-        FormUtils.setInputValue(HPU.find().in(form).byId("firstName"), account.firstname);
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-fname"), account.firstname);        
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-lname"), account.lastname);
+       
         
-        FormUtils.setInputValue(HPU.find().in(form).byId("eMail"), account.email);
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-email"), account.email);
 
-        FormUtils.setInputValue(HPU.find().in(form).byId("password"), account.password);
-        FormUtils.setInputValue(HPU.find().in(form).byId("passwordAgain"), account.password);
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-password"), account.password);
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-password-confirm"), account.password);
+        FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-phone"), account.phonenumber);
     }
 }

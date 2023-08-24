@@ -366,6 +366,24 @@ public class FormUtils extends BasicPageUtils
 
         return input;
     }
+   /* 
+    public static HtmlInput setInputValue1(final LookUpResult inputLocator, final long value) {
+        if (isNotLoadTestMode) {
+            isNotNull(inputLocator);
+        }
+
+        // Get the input element and set the new value.
+        final HtmlInput input = getAsserted(inputLocator);
+        input.setValueAttribute(String.valueOf(value)); // Convert long to String
+        input.setValue(String.valueOf(value)); // Convert long to String
+
+        if (isNotLoadTestMode) {
+            XltLogger.runTimeLogger.info(String.format("Setting input value: %s = %d", getIdOrName(input), value));
+        }
+
+        return input;
+    }*/
+
 
     /**
      * Finds the HTML input element with the given ID in the specified form and sets its value.

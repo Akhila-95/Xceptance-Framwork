@@ -12,7 +12,7 @@ public class CreateAccountPage extends GeneralPages
 {
     public static final CreateAccountPage instance = new CreateAccountPage();
     
-    public final CreateAccountForm createAccountForm = CreateAccountForm.instance;
+    public final static CreateAccountForm createAccountForm = CreateAccountForm.instance;
 
     @Override
     public void validate()

@@ -44,11 +44,23 @@ public class Account implements Initable
     @Property(key = "lastname", required = false)
     public String lastname;
 
+    
+    /**
+     * phone number
+     */
+    @Property(key = "phonenumber", required = false)
+    public String phonenumber;
     /**
      * Password
      */
     @Property(key = "password", required = false)
     public String password;
+
+    /**
+     * Password
+     */
+    @Property(key = "confirmpassword", required = false)
+    public String confirmpassword;
 
     /**
      * Shipping address.

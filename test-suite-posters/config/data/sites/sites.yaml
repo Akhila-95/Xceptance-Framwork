@@ -13,7 +13,7 @@ data:
 account:
     source: properties # properties, random, file, exclusivefile
     defaults:
-        password: XC42-xc42
+        password: Akhila@etg95
 
 search:
     hitTermsFile: searchterms.txt # the search terms to read    
