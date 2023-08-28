@@ -1,8 +1,7 @@
 package com.xceptance.loadtest.posters.models.components.account;
 
 import org.htmlunit.html.HtmlElement;
-//import org.htmlunit.html.HtmlForm;
-import  org.htmlunit.html.HtmlDivision;
+
 import com.xceptance.loadtest.api.data.Account;
 import com.xceptance.loadtest.api.hpu.HPU;
 import com.xceptance.loadtest.api.hpu.LookUpResult;
@@ -51,5 +50,10 @@ public class CreateAccountForm implements Component
         FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-password"), account.password);
         FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-password-confirm"), account.password);
         FormUtils.setInputValue(HPU.find().in(form).byId("registration-form-phone"), account.phonenumber);
+    }
+    public String GetCsrf()
+    {
+    	 final HtmlElement  element = HPU.find().in(locate().single()).byXPath("(//input[@type='hidden'][@name='csrf_token'])[4]").first();
+    	 return element.getAttribute("value");
     }
 }

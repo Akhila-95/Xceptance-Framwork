@@ -22,7 +22,7 @@ public class LoginForm implements Component
     public LookUpResult locate()
     {
        // return Page.find().byId("formLogin");
-        return Page.find().byCss("div.login-title");
+        return Page.find().byCss(".login-title");
     }
 
     @Override
@@ -33,16 +33,21 @@ public class LoginForm implements Component
     
     public HtmlElement getSignInButton()
     {
-    	return locate().byCss("#btnSignIn").asserted().single();
+    	return locate().byXPath("//button[contains(text(),'Login')]").asserted().single();
     }
 
-    public HtmlForm fillLoginForm(final Account account)
+    public HtmlElement fillLoginForm(final Account account)
     {
-        final HtmlForm form = locate().asserted().single();
+        final  HtmlElement  form = locate().asserted().single();
 
-        FormUtils.setInputValue(HPU.find().in(form).byId("email"), account.email);
-        FormUtils.setInputValue(HPU.find().in(form).byId("password"), account.password);
+        FormUtils.setInputValue(HPU.find().in(form).byId("login-form-email-modal-login"), account.email);
+        FormUtils.setInputValue(HPU.find().in(form).byId("login-form-password-modal-login"), account.password);
 
         return form;
+    }
+    public String GetCsrf()
+    {
+    	 final HtmlElement  element = HPU.find().in(locate().single()).byXPath("(//input[@type='hidden'][@name='csrf_token'])[2]").first();
+    	 return element.getAttribute("value");
     }
 }

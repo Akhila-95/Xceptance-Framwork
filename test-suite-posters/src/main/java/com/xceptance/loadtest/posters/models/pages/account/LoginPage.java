@@ -12,7 +12,7 @@ public class LoginPage extends GeneralPages
 {
     public static final LoginPage instance = new LoginPage();
 
-    public final LoginForm loginForm = LoginForm.instance;
+    public final static LoginForm loginForm = LoginForm.instance;
 
     @Override
     public void validate()

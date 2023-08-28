@@ -74,7 +74,10 @@ public class AddToCart extends AjaxAction<AddToCart>
 
            		WebResponse response1=req.fire();
 
-/*
+
+    	JSONObject addToCartJson = AjaxUtils.convertToJson(response1.getContentAsString());
+
+    	/*
     	// Send add to cart request
     	WebResponse response = new HttpRequest()
     		//.XHR()
@@ -88,8 +91,6 @@ public class AddToCart extends AjaxAction<AddToCart>
     		;
     	*/
     	// Safely convert the response to JSON
-    	JSONObject addToCartJson = AjaxUtils.convertToJson(response1.getContentAsString());
-
         // Handle error in add to cart response
     	//if(addToCartJson.has("error"))
     	//{

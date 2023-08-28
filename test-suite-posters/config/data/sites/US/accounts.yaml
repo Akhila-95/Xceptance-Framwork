@@ -27,10 +27,10 @@ addresses:
       phone: 3333333334
 
 account:
-    - email: akhila.m@etg.digital
-      firstname:Akhila
-      lastname:Musku
-      phonenumber:9876543212
+    - email: akhila12345@gmail.com
+      firstname: test
+      lastname: test3
+      phonenumber: 6034326425
       # login: accounts knows to fall back to email 
       password: ${account.defaults.password}
       billingAddress: *address01

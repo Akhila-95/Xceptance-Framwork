@@ -1,7 +1,11 @@
 package com.xceptance.loadtest.posters.actions.account;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.htmlunit.WebResponse;
 import org.htmlunit.util.NameValuePair;
@@ -22,14 +26,7 @@ import com.xceptance.loadtest.posters.models.pages.account.LoginPage;
  * @author Xceptance Software Technologies
  */
 public class CreateAccount extends PageAction<CreateAccount>
-{
-	private String firstname;	
-	private String lastname;
-	private String phonenumber;
-	private String email;
-	private String password;
-	private String confirmpassword;
-	private String csrf;
+{	
     private final Account account;
 
     public CreateAccount(final Account account)
@@ -40,66 +37,50 @@ public class CreateAccount extends PageAction<CreateAccount>
     @Override
     protected void doExecute() throws Exception
     {
-       // CreateAccountPage.instance.createAccountForm.fillCreateAccountForm(account);
+    	 CreateAccountPage.createAccountForm.fillCreateAccountForm(account);
+         String csrf=CreateAccountPage.createAccountForm.GetCsrf();
        
         //loadPageByClick(CreateAccountPage.instance.createAccountForm.getCreateAccountButton());
-        final List<NameValuePair> createAccount = new ArrayList<NameValuePair>();
+         DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+         Date date1 = new Date();
+         String timestamp = dateFormat.format(date1);
+         Random randomGenerator = new Random();  
+         int randomInt = randomGenerator.nextInt(10000);
+         String Emailadress=account.firstname+account.lastname+"+"+timestamp+randomInt+"@gmail.com";
 
-		createAccount.add(new NameValuePair("dwfrm_profile_customer_firstname", firstname));
-		createAccount.add(new NameValuePair("dwfrm_profile_customer_lastname", lastname));
-		createAccount.add(new NameValuePair("dwfrm_profile_customer_phone",  phonenumber));
-		createAccount.add(new NameValuePair("dwfrm_profile_customer_email",  email));
-		createAccount.add(new NameValuePair("dwfrm_profile_login_password",  password));
-		createAccount.add(new NameValuePair("dwfrm_profile_login_passwordconfirm", confirmpassword));
+         final List<NameValuePair> createAccount = new ArrayList<NameValuePair>();
+
+         createAccount.add(new NameValuePair("dwfrm_profile_customer_email", Emailadress));
+
+		createAccount.add(new NameValuePair("dwfrm_profile_customer_firstname", account.firstname));
+		createAccount.add(new NameValuePair("dwfrm_profile_customer_lastname", account.lastname));
+		createAccount.add(new NameValuePair("dwfrm_profile_customer_phone",  account.phonenumber));		
+		createAccount.add(new NameValuePair("dwfrm_profile_login_password",  account.password));
+		createAccount.add(new NameValuePair("dwfrm_profile_login_passwordconfirm", account.password));
 		createAccount.add(new NameValuePair("csrf_token", csrf));
 		
             HttpRequest req = new HttpRequest()
 
                         .XHR()
 
-                        .url("/on/demandware.store/Sites-fireMountainGems-Site/default/CheckoutServices-SubmitCustomer")
+                        .url("/on/demandware.store/Sites-fireMountainGems-Site/default/Account-SubmitRegistration?rurl=1")
 
                        .POST()             
 
                         .postParams(createAccount);
 
-            WebResponse response1=req.fire();
-
-            JSONObject createaccount = AjaxUtils.convertToJson(response1.getContentAsString());
-            /*
-            //Assert.assertEquals("Responce expected",response1.getContentAsString());
-
-          //  String shipmetUId=new JSONObject(response1.getContentAsString()).getJSONObject("order").getJSONObject("items").getJSONArray("items").getJSONObject(0).getString("shipmentUUID");
-
-           // String UId=new JSONObject(response1.getContentAsString()).getJSONObject("order").getJSONObject("items").getJSONArray("items").getJSONObject(0).getString("UUID");
-
           
-
-            // Fill shipping address form
-
-            CreateAccountPage.createAccountForm.fillCreateAccountForm(account);
-
-            final List<NameValuePair> parms = new ArrayList<NameValuePair>();
-
-            // parms.add(new NameValuePair("originalShipmentUUID", shipmetUId));
-
-             //parms.add(new NameValuePair("shipmentUUID", shipmetUId));
-
-             parms.add(new NameValuePair("dwfrm_profile_customer_firstname", account.firstname));
-
-             parms.add(new NameValuePair("dwfrm_profile_customer_lastname", account.lastname));
-
-             parms.add(new NameValuePair("dwfrm_profile_customer_phone", account.phonenumber));
-
-             parms.add(new NameValuePair("dwfrm_profile_customer_email", "+"+account.email));             
-
-             parms.add(new NameValuePair("dwfrm_profile_login_password", account.password));
-
-             parms.add(new NameValuePair("dwfrm_profile_login_passwordconfirm", account.confirmpassword));
-             */
-             
-
-    }
+            WebResponse response=req.fire();
+              
+       
+            String url = "";
+            if(response.getStatusCode()==200)
+              url=new JSONObject(response.getContentAsString()).getString("redirectUrl");
+            else
+              Assert.fail(response.getStatusMessage());
+              loadPageByUrlClick(url);
+            
+         }
 
     @Override
     protected void postValidate() throws Exception

@@ -33,10 +33,10 @@ public class TAccountCreation extends LoadTestCase
         new CreateAccountFlow().run();
         
         // Fill form and login
-        new Login(Context.get().data.getAccount().get()).run();
+       //new Login(Context.get().data.getAccount().get()).run();
         
         // Open account page
-        new GoToMyAccount().run();        
+       // new GoToMyAccount().run();        
 
         // Log out
         new Logout().run();

@@ -17,7 +17,7 @@ public class PromotedProducts implements Component
     public LookUpResult locate()
     {
        // return Page.find().byCss("#productList");
-        return Page.find().byCss("div.experience-main");
+        return Page.find().byCss("div.homepage");
 
     }
 

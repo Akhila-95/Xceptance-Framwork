@@ -40,13 +40,13 @@ public class UserMenu implements Component
     public LookUpResult getMyAccountLink()
     {
       //  return locate().byCss("a.goToAccountOverview");
-        return locate().byCss("div.icon-block a[href='https://utsf.firemountain.org/account']");
+        return locate().byCss("[alt='person-icon']");
     }
 
     public LookUpResult getLogoutLink()
     {
       //  return locate().byCss("a.goToLogout");
-    	return locate().byCss("a[href='https://utsf.firemountain.org/on/demandware.store/Sites-fireMountainGems-Site/default/Login-Logout']");
+    	return locate().byCss("div.overlay-account-create div.text-right a");
     }
     
     public boolean isLoggedIn()
