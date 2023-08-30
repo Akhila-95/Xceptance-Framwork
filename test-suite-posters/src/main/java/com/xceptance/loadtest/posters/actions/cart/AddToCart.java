@@ -55,15 +55,15 @@ public class AddToCart extends AjaxAction<AddToCart>
     @Override
     protected void doExecute() throws Exception
     {
-    	
+    	//This line initializes a list named AddToCartParams of type NameValuePair. It's intended to hold parameters that will be sent in the HTTP POST request to add a product to the cart.
     	 final List<NameValuePair> AddToCartParams  = new ArrayList<NameValuePair>();   	
 
+    	 //Here, two parameters are added to the AddToCartParams list. These parameters are pid (product ID) and quantity (set to "1"). These parameters will likely be used to identify the product and specify the quantity to be added to the cart.
     	 AddToCartParams.add((NameValuePair) new NameValuePair("pid", productId));
-
     	 AddToCartParams.add((NameValuePair) new NameValuePair("quantity", "1"));
 
            HttpRequest req = new HttpRequest()
-
+        		   //(XMLHttpRequest) 
                        .XHR()
 
                        .url("/on/demandware.store/Sites-fireMountainGems-Site/default/Cart-AddProduct")
@@ -72,41 +72,21 @@ public class AddToCart extends AjaxAction<AddToCart>
                       
                       .postParams(AddToCartParams);
 
-           		WebResponse response1=req.fire();
+           //Sending the Request
+           		WebResponse response=req.fire();
 
 
-    	JSONObject addToCartJson = AjaxUtils.convertToJson(response1.getContentAsString());
+    	JSONObject addToCartJson = AjaxUtils.convertToJson(response.getContentAsString());
 
-    	/*
-    	// Send add to cart request
-    	WebResponse response = new HttpRequest()
-    		//.XHR()
-    		//.GET()
-    		.url("default/Cart-AddProduct")
-    		.param("productId", productId)
-    		//.param("finish", finish)
-    		//.param("size", size)
-    		.assertJSONObject("Expected product information to be contained in add to cart response", true, json -> json.has("product"))
-    		.fire()
-    		;
-    	*/
-    	// Safely convert the response to JSON
-        // Handle error in add to cart response
-    	//if(addToCartJson.has("error"))
-    	//{
-    		//Assert.fail("Add to cart failed with message: " + addToCartJson.getString("message"));
-    	//}
+    	var error = addToCartJson.get("error").toString();
 
-        // Validate the item count in the add to cart response (headerCartOverview = itemsInMiniCart)
-        //Assert.assertTrue("Cart quantity did not change", addToCartJson.has("headerCartOverview") && (addToCartJson.getInt("headerCartOverview") > previousCartQuantity));
-    	
-        // Update the mini cart item count
-    	//GeneralPages.instance.miniCart.updateQuantity(addToCartJson.getInt("headerCartOverview"));
+        boolean isError = Boolean.parseBoolean(error);
 
-    	// Increase total add to cart count if successful
-        Context.get().data.totalAddToCartCount++;
+        if(!isError) {
+
+            Context.get().data.totalAddToCartCount++;
+         }
     }
-
     /**
      * {@inheritDoc}
      */

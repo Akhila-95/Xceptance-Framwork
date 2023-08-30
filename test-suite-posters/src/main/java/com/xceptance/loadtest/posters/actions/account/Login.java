@@ -33,38 +33,43 @@ public class Login extends PageAction<Login>
     @Override
     protected void doExecute() throws Exception
     {
-        LoginPage.instance.loginForm.fillLoginForm(account);
+       
         
        // loadPageByClick(LoginPage.instance.loginForm.getSignInButton());
-        LoginPage.loginForm.fillLoginForm(account);
+        //LoginPage.loginForm.fillLoginForm(account);
         String csrf=LoginPage.loginForm.GetCsrf();
  
        final List<NameValuePair> login = new ArrayList<NameValuePair>();
 
-       login.add(new NameValuePair("login", account.email));
-       login.add(new NameValuePair("loginPassword: ", account.password));     
+       login.add(new NameValuePair("loginEmail","bhaskarrao.s@etggs.com" ));
+       login.add(new NameValuePair("loginPassword", "Bhaskaretg@123"));     
+       login.add(new NameValuePair("g-recaptcha-action", "login"));  
        login.add(new NameValuePair("csrf_token", csrf));
 		
-           HttpRequest req = new HttpRequest()
+       HttpRequest req1 = new HttpRequest()
 
-                       .XHR()
+               .XHR()
 
-                       .url("/on/demandware.store/Sites-fireMountainGems-Site/default/Account-Login")
+               .url("/on/demandware.store/Sites-fireMountainGems-Site/default/Account-Login")
 
-                      .POST()             
+               .POST()             
 
-                       .postParams(login);
+               .postParams(login);
 
-           WebResponse response=req.fire(); 
-           System.out.println("logged in successfully  ");
-         /*  
-           String url = "";
-           if(response.getStatusCode()==200)
-             url=new JSONObject(response.getContentAsString()).getString("redirectUrl");
-           else
-             Assert.fail(response.getStatusMessage());
-             loadPageByUrlClick(url);
-        */
+    WebResponse response=req1.fire();
+    System.out.println( response);
+    String url = "";
+
+    if(response.getStatusCode()==200) {
+    	System.out.println(url);
+     url=new JSONObject(response.getContentAsString()).getString("redirectUrl");
+     System.out.println("rggegd"+ url);
+    }
+    else
+      Assert.fail(response.getStatusMessage());
+ 
+     loadPageByUrlClick(url);
+    
     }
 
     @Override

@@ -37,7 +37,7 @@ public class CreateAccount extends PageAction<CreateAccount>
     @Override
     protected void doExecute() throws Exception
     {
-    	 CreateAccountPage.createAccountForm.fillCreateAccountForm(account);
+    	 //CreateAccountPage.createAccountForm.fillCreateAccountForm(account);
          String csrf=CreateAccountPage.createAccountForm.GetCsrf();
        
         //loadPageByClick(CreateAccountPage.instance.createAccountForm.getCreateAccountButton());
@@ -71,12 +71,16 @@ public class CreateAccount extends PageAction<CreateAccount>
 
           
             WebResponse response=req.fire();
-              
+            System.out.println( "sadsfafaffffff "+response);  
        
             String url = "";
-            if(response.getStatusCode()==200)
+            if(response.getStatusCode()==200) {
+            	System.out.println("Urlrrr" + url);
               url=new JSONObject(response.getContentAsString()).getString("redirectUrl");
+              System.out.println("Urlrrr342352" + url);
+            }
             else
+            	
               Assert.fail(response.getStatusMessage());
               loadPageByUrlClick(url);
             

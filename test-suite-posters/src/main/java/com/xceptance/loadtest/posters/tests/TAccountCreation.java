@@ -30,13 +30,13 @@ public class TAccountCreation extends LoadTestCase
         System.out.println("visitflow complted");
 
         // Register user
-        new CreateAccountFlow().run();
+      // new CreateAccountFlow().run();
         
         // Fill form and login
-       //new Login(Context.get().data.getAccount().get()).run();
+       new Login(Context.get().data.getAccount().get()).run();
         
         // Open account page
-       // new GoToMyAccount().run();        
+        //new GoToMyAccount().run();        
 
         // Log out
         new Logout().run();

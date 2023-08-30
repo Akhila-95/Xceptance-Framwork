@@ -17,7 +17,8 @@ public class CheckoutButton implements Component
     public LookUpResult locate()
     {
         //return Page.find().byId("btnStartCheckout");
-        return Page.find().byId(".checkout-btn");
+        //return Page.find().byXPath("(//button[contains(@class,'submit-customer')])[2]");
+    	return locate().byCss("a.checkout-btn");
     }
 
     @Override

@@ -18,13 +18,13 @@ public class Logout extends PageAction<Logout>
     @Override
     protected void doExecute() throws Exception
     {
-        //loadPageByClick(GeneralPages.instance.user.getLogoutLink().asserted().first());
-    	HttpRequest req1 = new HttpRequest()
-  				.XHR()
-  				.url("/on/demandware.store/Sites-fireMountainGems-Site/default/Login-Logout")
-                  .GET() ;      
-       WebResponse response=req1.fire();
-       System.out.println("Log out successfully ");
+        loadPageByClick(GeneralPages.instance.user.getLogoutLink().asserted().first());
+//    	HttpRequest req1 = new HttpRequest()
+//  				.XHR()
+//  				.url("/on/demandware.store/Sites-fireMountainGems-Site/default/Login-Logout")
+//                  .GET() ;      
+//       WebResponse response=req1.fire();
+//       System.out.println("Logged  out successfully ");
     }
 
     @Override

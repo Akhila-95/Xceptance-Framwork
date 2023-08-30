@@ -17,7 +17,7 @@ public class CheckoutProgressIndicator implements Component
     @Override
     public LookUpResult locate()
     {
-        return Page.find().byId("breadcrumbCheckout");
+    	  return Page.find().byId("checkout-main");
     }
 
     @Override
@@ -28,6 +28,7 @@ public class CheckoutProgressIndicator implements Component
     
     public boolean isStepAvailable(String stepText)
     {
-    	return HPU.find().in(locate().single()).byXPath("./ul/li/a[contains(text(), '" + stepText + "')]").exists();
+    	//return HPU.find().in(locate().single()).byXPath("./ul/li/a[contains(text(), '" + stepText + "')]").exists();
+    	return HPU.find().in(locate().single()).byCss("#dwfrm_shipping").exists();
     }
 }

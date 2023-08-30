@@ -27,9 +27,9 @@ addresses:
       phone: 3333333334
 
 account:
-    - email: akhila12345@gmail.com
-      firstname: test
-      lastname: test3
+    - email: test433@test.com
+      firstname: load
+      lastname: test
       phonenumber: 6034326425
       # login: accounts knows to fall back to email 
       password: ${account.defaults.password}

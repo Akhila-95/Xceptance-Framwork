@@ -6,6 +6,7 @@ import com.xceptance.loadtest.api.actions.PageAction;
 import com.xceptance.loadtest.api.validators.Validator;
 import com.xceptance.loadtest.posters.models.pages.cart.CartPage;
 import com.xceptance.loadtest.posters.models.pages.checkout.ShippingAddressPage;
+import com.xceptance.loadtest.posters.models.pages.general.GeneralPages;
 
 /**
  * Enters the checkout.
@@ -17,15 +18,15 @@ public class Checkout extends PageAction<Checkout>
 	@Override
 	public void precheck()
 	{
-		super.precheck();
-		
+		super.precheck();		
 		Assert.assertTrue("Expected checkout button exists and is clickable", CartPage.instance.checkoutButton.exists());		
+		
 	}
 	
 	@Override
 	protected void doExecute() throws Exception
-	{
-		loadPageByClick(CartPage.instance.checkoutButton.locate().asserted("Expected checkout button").first());
+	{	
+		loadPageByClick(CartPage.instance.checkoutButton.locate().asserted("Expected checkout button").first());		
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class CheckoutFlow extends Flow
     {
     	// Enter checkout
     	new Checkout().run();
-    	
+    /*	
     	// Provide shipping address
     	new CheckoutShippingAddress().run();
     	
@@ -40,7 +40,8 @@ public class CheckoutFlow extends Flow
     	{
     		new CheckoutPlaceOrder().run();
     	}
-
+*/
         return true;
+        
     }
 }

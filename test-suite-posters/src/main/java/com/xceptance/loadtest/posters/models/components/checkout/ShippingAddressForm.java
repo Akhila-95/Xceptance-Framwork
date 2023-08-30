@@ -21,10 +21,10 @@ public class ShippingAddressForm implements Component
     @Override
     public LookUpResult locate()
     {
-        //return Page.find().byId("formAddDelAddr");
-        return Page.find().byId("formAddDelAddr");
+        return Page.find().byId("checkout-main");
     }
 
+    
     @Override
     public boolean exists()
     {
@@ -44,8 +44,14 @@ public class ShippingAddressForm implements Component
         FormUtils.checkRadioButton(HPU.find().in(form).byCss("#billEqualShipp-Yes"));
     }
     
+    public String GetCsrf()
+    {
+    	 final HtmlElement  element = HPU.find().in(locate().single()).byXPath("(//input[@type='hidden'][@name='csrf_token'])[2]").first();
+    	 return element.getAttribute("value");
+    }
+   
     public HtmlElement getContinueButton()
     {
-    	return HPU.find().in(locate().asserted("Expected single shipping address form").single()).byId("btnAddDelAddr").asserted("Expected single continue button").single();
+    	return HPU.find().in(locate().asserted("Expected single shipping address form").single()).byCss("button.submit-customer").asserted("Expected single continue button").single();
     }
 }

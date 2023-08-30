@@ -54,6 +54,7 @@ public class NavigateToProductPageFlow extends Flow
             else if (SearchNoResultPage.instance.is())
             {
             	// No result page because there was no product, nothing else to do here
+            	
             	break;
             }
             else

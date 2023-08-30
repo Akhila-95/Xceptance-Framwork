@@ -18,7 +18,7 @@ public class UserMenu implements Component
         //return Header.instance.locate().byCss("#userMenu");
         return Header.instance.locate().byCss(".login-section");
     }
-
+    //.//a[@class='d-lg-none d-flex daccount-wrapper justify-content-center']
     @Override
     public boolean exists()
     {
@@ -40,13 +40,13 @@ public class UserMenu implements Component
     public LookUpResult getMyAccountLink()
     {
       //  return locate().byCss("a.goToAccountOverview");
-        return locate().byCss("[alt='person-icon']");
+        return locate().byXPath(".//div[@class='icon-block']/descendant::a[@href='https://utsf.firemountain.org/account']");
     }
 
     public LookUpResult getLogoutLink()
     {
       //  return locate().byCss("a.goToLogout");
-    	return locate().byCss("div.overlay-account-create div.text-right a");
+    	return locate().byXPath(".//div[@class='text-right']/descendant::a[@href='https://utsf.firemountain.org/on/demandware.store/Sites-fireMountainGems-Site/default/Login-Logout']");
     }
     
     public boolean isLoggedIn()
